@@ -5,176 +5,161 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. -->
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<title>迎春节（1月29日）倒计时 - blog.mcenahle.sh.cn</title>
-  <link href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-
-<style>
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color: #ffebd7; /* 淡红色背景 */
-    color: #c40a16; /* 红色文字 */
-    text-align: center;
-    padding-top: 50px;
-  }
-  
-  h1 {
-    font-size: 2.5em;
-    margin-bottom: 30px;
-    color: #d92d20; /* 更深一点的红色 */
-  }
-  
-  #countdown {
-    font-size: 2em;
-    margin-bottom: 30px;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .decorations {
-    margin: 20px 0;
-  }
-
-  .lantern {
-    width: 100px;
-    height: auto;
-    animation: swing 5s infinite ease-in-out;
-  }
-
-  @keyframes swing {
-    0% { transform: rotate(0deg); }
-    25% { transform: rotate(-10deg); }
-    50% { transform: rotate(10deg); }
-    75% { transform: rotate(-5deg); }
-    100% { transform: rotate(0deg); }
-  }
-
-  footer {
-    margin-top: 50px;
-    font-size: 1.2em;
-    color: #b88e0f; /* 金色 */
-  }
-        a {
-            text-decoration: none;
-        }
-
-        a:hover,
-        a:focus {
-            outline: 2px solid #0078d7;
-            /* 选择适当的颜色进行高亮 */
-            outline-offset: 1px;
-            /* 高亮边框偏移 */
-            text-decoration: none;
-            /* 下划线显示效果 */
-            color: #0D6EFD;
-            /* 更改颜色 */
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>迎春节（1月29日）倒计时 - blog.mcenahle.sh.cn</title>
+	<link href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+		  font-family: 'Arial', sans-serif;
+		  background-color: #ffebd7; /* 淡红色背景 */
+		  color: #c40a16; /* 红色文字 */
+		  text-align: center;
+		  padding-top: 50px;
+		}
+		
+		h1 {
+		  font-size: 2.5em;
+		  margin-bottom: 30px;
+		  color: #d92d20; /* 更深一点的红色 */
+		}
+		
+		#countdown {
+		  font-size: 2em;
+		  margin-bottom: 30px;
+		}
+		
+		.container {
+		  display: flex;
+		  flex-direction: column;
+		  align-items: center;
+		}
+		
+		.decorations {
+		  margin: 20px 0;
+		}
+		
+		.lantern {
+		  width: 100px;
+		  height: auto;
+		  animation: swing 5s infinite ease-in-out;
+		}
+		
+		@keyframes swing {
+		  0% { transform: rotate(0deg); }
+		  25% { transform: rotate(-10deg); }
+		  50% { transform: rotate(10deg); }
+		  75% { transform: rotate(-5deg); }
+		  100% { transform: rotate(0deg); }
+		}
+		
+		footer {
+		  margin-top: 50px;
+		  font-size: 1.2em;
+		  color: #b88e0f; /* 金色 */
+		}
+		      a {
+		          text-decoration: none;
+		      }
+		
+		      a:hover,
+		      a:focus {
+		          outline: 2px solid #0078d7;
+		          /* 选择适当的颜色进行高亮 */
+		          outline-offset: 1px;
+		          /* 高亮边框偏移 */
+		          text-decoration: none;
+		          /* 下划线显示效果 */
+		          color: #0D6EFD;
+		          /* 更改颜色 */
+		      }
+		      .modal-body {
+		  text-align: left;
+		}
+		
+	</style>
 </head>
 <body>
-
-<div class="container">
-  <h1>迎春节（1月29日）倒计时</h1>
-  <div id="countdown"></div>
-  
-  <!-- 装饰性元素：灯笼 -->
-  <div class="decorations">
-    <img class="lantern" src="https://blog.mcenahle.sh.cn/lantern.png" alt="红灯笼">
-  </div>
-  
-  <footer>祝您新年快乐，万事如意！</footer>
-</div>
-
-<script>
-// 设置春节日期（考虑到时区问题，请确保时间是正确的）
-var newYear = new Date("Jan 29, 2025 00:00:00").getTime();
-
-// 更新倒计时的函数
-function updateCountdown() {
-  // 获取当前时间
-  var now = new Date().getTime();
-  
-  // 计算距离春节的时间差
-  var distance = newYear - now;
-  
-  // 计算天、小时、分钟和秒
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  // 显示结果在元素中
-  document.getElementById("countdown").innerHTML = days + "天 " + hours + "小时 "
-  + minutes + "分钟 " + seconds + "秒 ";
-  
-  // 如果倒计时结束，显示相应信息
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "新年快乐！";
-  }
-}
-
-// 每隔1秒调用一次更新倒计时的函数
-var x = setInterval(updateCountdown, 1000);
-
-// 初始化倒计时
-updateCountdown();
-</script>
-<br>
-<p style="text-align:center; font-size:12px;">
-    <div class="container mt-3">
-  <p>点击按钮以查看更多信息</p>
-  
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-    查看更多
-  </button>
-</div>
-
-<!-- 模态框 -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- 模态框头部 -->
-      <div class="modal-header">
-        <h4 class="modal-title">提示及开源许可</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- 模态框内容 -->
-      <div class="modal-body">
-        <strong>提示 </strong>红灯笼 图片在花瓣网下载，且已获得著作权授权。<a href="https://gd.huaban.com/pricing" target="_blank">获取详细信息 <svg class="icon" width="11" height="11">
-            <use xlink:href="icons.svg#icon-external-link"></use>
-        </svg></a>。
-    <br>
-    <strong>开源许可 </strong>本网页（https://blog.mcenahle.sh.cn/chunjie-djs.html）源代码以 <a href="https://mit-license.org/" target="_blank">MIT 许可证 
-        <svg class="icon" width="11" height="11">
-            <use xlink:href="icons.svg#icon-external-link"></use>
-        </svg></a> 开源。<a href="https://github.com/Mcenahle/chunjie-djs" target="_blank">下载源代码 
-        <svg class="icon" width="11" height="11">
-            <use xlink:href="icons.svg#icon-external-link"></use>
-        </svg></a>。
-      </div>
-
-      <!-- 模态框底部 -->
-      <div class="modal-footer">
-        
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-    
+	<div class="container">
+		<h1>迎春节（1月29日）倒计时</h1>
+		<div id="countdown"></div>
+		<!-- 装饰性元素：灯笼 -->
+		<div class="decorations">
+			<img class="lantern" src="https://blog.mcenahle.sh.cn/lantern.png" alt="红灯笼">
+		</div>
+		<footer>祝您新年快乐，万事如意！</footer>
+	</div>
+	<script>
+		// 设置春节日期（考虑到时区问题，请确保时间是正确的）
+		var newYear = new Date("Jan 29, 2025 00:00:00").getTime();
+		
+		// 更新倒计时的函数
+		function updateCountdown() {
+		  // 获取当前时间
+		  var now = new Date().getTime();
+		  
+		  // 计算距离春节的时间差
+		  var distance = newYear - now;
+		  
+		  // 计算天、小时、分钟和秒
+		  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+		  
+		  // 显示结果在元素中
+		  document.getElementById("countdown").innerHTML = days + "天 " + hours + "小时 "
+		  + minutes + "分钟 " + seconds + "秒 ";
+		  
+		  // 如果倒计时结束，显示相应信息
+		  if (distance < 0) {
+		    clearInterval(x);
+		    document.getElementById("countdown").innerHTML = "新年快乐！";
+		  }
+		}
+		
+		// 每隔1秒调用一次更新倒计时的函数
+		var x = setInterval(updateCountdown, 1000);
+		
+		// 初始化倒计时
+		updateCountdown();
+	</script>
+	<br>
+	<p style="text-align:center; font-size:12px;">
+	<div class="container mt-3">
+		<p>点击按钮以查看更多信息。</p>
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"> 查看更多 </button>
+	</div>
+	<!-- 模态框 -->
+	<div class="modal" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- 模态框头部 -->
+				<div class="modal-header">
+					<h4 class="modal-title">提示及开源许可</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<!-- 模态框内容 -->
+				<div class="modal-body">
+					<strong>提示 </strong>红灯笼 图片在花瓣网下载，且已获得著作权授权。<a href="https://gd.huaban.com/pricing" target="_blank">获取详细信息 <svg class="icon" width="11" height="11">
+							<use xlink:href="icons.svg#icon-external-link"></use>
+						</svg></a>。 <br>
+					<strong>开源许可 </strong>本网页（https://blog.mcenahle.sh.cn/chunjie-djs.html）源代码以 <a href="https://mit-license.org/" target="_blank">MIT 许可证 <svg class="icon" width="11" height="11">
+							<use xlink:href="icons.svg#icon-external-link"></use>
+						</svg></a> 开源。<a href="https://github.com/Mcenahle/chunjie-djs" target="_blank">下载源代码 <svg class="icon" width="11" height="11">
+							<use xlink:href="icons.svg#icon-external-link"></use>
+						</svg></a>。
+				</div>
+				<!-- 模态框底部 -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
